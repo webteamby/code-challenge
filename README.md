@@ -14,7 +14,44 @@ Before start App you should specify path to "MyLiteDb.db" in Web.config file.
 
 <add key="LiteDb.Path" value="D:\Projects\_git\my\other\code-challenge-webteamby\MyLiteDb.db"/>
 
-Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
+--Schema of DB
+ 
+ {
+    "email": "my Test@myemail.com",
+    "firstName": "Vasya 2",
+    "lastName": "Pupkin",
+    "bio": "My name is",
+    "phoneNumber": "+3752734596",
+    "region": "Minsk",
+    "industry": "TractorIT",
+    "educations": [
+      {
+        "schoolName": "School",
+        "schoolStartYear": 1997,
+        "schoolEndYear": 2001
+      },
+      {
+        "schoolName": "Univer",
+        "schoolStartYear": 2001,
+        "schoolEndYear": 2010
+      }
+    ],
+    "workExperiences": [
+      {
+        "jobTitle": "Dev",
+        "company": "Gik",
+        "jobStartYear": 2018,
+        "jobEndYear": 2019
+      }
+    ],
+    "facebook": "My facebook",
+    "twitter": "Twitter",
+    "blog": "blogpost.com",
+    "id": 4
+  },
+  
+
+NOTE: Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
 
 
 # Exceptions handling
