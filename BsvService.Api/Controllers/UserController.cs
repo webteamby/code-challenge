@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -35,31 +36,16 @@ namespace BsvService.Api.Controllers
         [Route("users")]
         public IHttpActionResult GetUsers([FromUri]string region=null, [FromUri]string industry = null)
         {
-            Expression<Func<UserProfile, bool>> filter = null;
-
-            if (!string.IsNullOrEmpty(region))
-            {
-                if (!string.IsNullOrEmpty(industry))
-                {
-                    filter = profile => profile.Industry == industry && profile.Region == region;
-                }
-                else
-                {
-                    filter = profile => profile.Region == region;
-                }
-            }
-            else if(!string.IsNullOrEmpty(industry))
-            {
-                filter = profile => profile.Industry == industry;
-            }
+            Expression<Func<UserProfile, bool>> filter = profile =>
+                (string.IsNullOrEmpty(industry) || profile.Industry.ToLower(CultureInfo.InvariantCulture) == industry.ToLower(CultureInfo.InvariantCulture)) &&
+                (string.IsNullOrEmpty(region) || profile.Region.ToLower(CultureInfo.InvariantCulture) == region.ToLower(CultureInfo.InvariantCulture));
 
             var res = _userRepo.GetList(filter);
             return Ok(res);
         }
 
         [HttpPut]
-        [ResponseType(typeof(bool))]
-        [Route("users")]
+        [Route("user")]
         public IHttpActionResult UpdateUser(UserProfile userProfile)
         {
             _userRepo.Update(userProfile);
@@ -67,11 +53,18 @@ namespace BsvService.Api.Controllers
         }
 
         [HttpPost]
-        [ResponseType(typeof(bool))]
-        [Route("users")]
+        [Route("user")]
         public IHttpActionResult CreateUser(UserProfile userProfile)
         {
             _userRepo.Insert(userProfile);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("users/{id:int}")]
+        public IHttpActionResult DeleteUser(int id)
+        {
+            _userRepo.Delete(id);
             return Ok();
         }
     }

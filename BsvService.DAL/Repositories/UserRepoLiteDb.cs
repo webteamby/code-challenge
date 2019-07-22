@@ -9,15 +9,13 @@ namespace BsvService.DAL.Repositories
     public class UserRepoLiteDb : IUserRepo, ILiteDbRepo
     {
         public string CollectionName { get; set; } = @"userprofile";
+        private readonly string _pathToDb;
 
-
-        private string _pathToDb;
         public UserRepoLiteDb(string pathToDb)
         {
             _pathToDb = pathToDb;
 
             // Create Indexes
-
             // Open database (or create if doesn't exist)
             using (var db = new LiteDatabase(_pathToDb))
             {
@@ -29,7 +27,6 @@ namespace BsvService.DAL.Repositories
 
         public UserProfile Get(int id)
         {
-            throw new Exception("test");
             using (var db = new LiteRepository(_pathToDb))
             {
                 // query using fluent query
@@ -73,6 +70,14 @@ namespace BsvService.DAL.Repositories
             using (var db = new LiteRepository(_pathToDb))
             {
                 db.Update(userProfile, CollectionName);
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var db = new LiteRepository(_pathToDb))
+            {
+                db.Delete<UserProfile>(id, CollectionName);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace BsvService.Api
             config
                 .EnableSwagger(c =>
                 {
-                    c.SingleApiVersion("v1", "A title for your API");
+                    c.SingleApiVersion("v1", "BsvService API");
                     c.PrettyPrint();
                     c.RootUrl(x =>
                     {

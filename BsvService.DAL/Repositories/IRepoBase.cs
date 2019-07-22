@@ -12,6 +12,6 @@ namespace BsvService.DAL.Repositories
         void Insert(IEnumerable<T> userProfileList);
         void Insert(T userProfile);
         void Update(T userProfile);
-
+        void Delete(int id);
     }
 }
