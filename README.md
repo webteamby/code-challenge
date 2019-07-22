@@ -14,8 +14,9 @@ Before start App you should specify path to "MyLiteDb.db" in Web.config file.
 
 <add key="LiteDb.Path" value="D:\Projects\_git\my\other\code-challenge-webteamby\MyLiteDb.db"/>
 
---Schema of DB
- 
+Schema of DB
+
+```
  {
     "email": "my Test@myemail.com",
     "firstName": "Vasya 2",
@@ -49,7 +50,7 @@ Before start App you should specify path to "MyLiteDb.db" in Web.config file.
     "blog": "blogpost.com",
     "id": 4
   },
-  
+```  
 
 NOTE: Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
 
