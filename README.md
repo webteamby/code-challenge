@@ -4,6 +4,8 @@ This project is made in Visual Studio 2019 as new project based based on 'ASP.Ne
 
 Using .Net Framawork 4.7.1
 
+# Set up
+Just dowload project from repo, restore nugetpackaget and run 'BsvService.Api'
 
 # Data Base
 
