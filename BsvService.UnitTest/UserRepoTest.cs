@@ -168,7 +168,6 @@ namespace BsvService.UnitTest
         {
             return _users.Where(filter.Compile()).ToList();
         }
-
         void IRepoBase<UserProfile>.Insert(IEnumerable<UserProfile> userProfileList)
         {
             throw new NotImplementedException();

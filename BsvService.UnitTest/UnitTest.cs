@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
 using BsvService.Api.Controllers;
@@ -41,10 +42,26 @@ namespace BsvService.UnitTest
         {
 
             IHttpActionResult actionResult = controller.GetUsers();
-            var contentResult = actionResult as OkNegotiatedContentResult<List<UserProfile>>;
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<UserProfile>>;
 
             Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
+            Assert.IsTrue(contentResult.Content.Count() == 3);
+
+
+            actionResult = controller.GetUsers("Minsk");
+            contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<UserProfile>>;
+
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.IsTrue(contentResult.Content.Count() == 2);
+
+            actionResult = controller.GetUsers(null, "IT");
+            contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<UserProfile>>;
+
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.IsTrue(contentResult.Content.Count() == 2);
         }
     }
 }
