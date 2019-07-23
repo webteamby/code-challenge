@@ -65,9 +65,9 @@ Database is a locally embedded NoSQL database - LiteDB (https://www.litedb.org/)
     Blog: string,
   }
 ```  
-IMPORTANT: For 'Education' and 'WorkExperience' fields we are using collections to allow the users to store as many  educations and working experiences as they would like. So this kind of design is scaleable
+**IMPORTANT:** For 'Education' and 'WorkExperience' fields we are using collections to allow the users to store as many  educations and working experiences as they would like. So this kind of design is scaleable
 
-IMPORTANT: Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
+**IMPORTANT:** Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
 
 
 # Exceptions handling
