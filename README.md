@@ -15,6 +15,7 @@ Using .Net Framawork 4.7.1
   You could find this file in the root of project folder.
 - Restore nugetpackages.
 - Build and run 'BsvService.Api'
+- Go to URI http://localhost:5000/swagger/ui/index to try API methods
 
 # Data Base
 Database is a locally embedded NoSQL database - LiteDB (https://www.litedb.org/)
