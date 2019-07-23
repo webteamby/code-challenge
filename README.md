@@ -1,59 +1,73 @@
-# Frame of Project
+# Project
 
+Store user profile data in locally nosql db. Allow the users to store in their profiles as many educations and working experiences as they would like.
+Provide API to manipulate user data.
+
+# Technical Stuff
 This project is made in Visual Studio 2019 as new project based based on 'ASP.Net WebAPI 2' template (https://marketplace.visualstudio.com/items?itemName=sergey-tregub.asp-net-web-api-owin-template).
 
 Using .Net Framawork 4.7.1
 
-# Set up
-Just dowload project from repo, restore nugetpackages and run 'BsvService.Api'
+# Set up and run
+-Dowload project from repo.
+-Specify path to "MyLiteDb.db" in Web.config file.
+<add key="LiteDb.Path" value="D:\Projects\_git\my\other\code-challenge-webteamby\MyLiteDb.db"/>
+You could find this file in the root of project folder
+-Restore nugetpackages.
+-Build and run 'BsvService.Api'
 
 # Data Base
+Database is a locally embedded NoSQL database - LiteDB (https://www.litedb.org/)
 
-Using LiteDB. From nugget-package manager.
-
-Before start App you should specify path to "MyLiteDb.db" in Web.config file.
-
-<add key="LiteDb.Path" value="D:\Projects\_git\my\other\code-challenge-webteamby\MyLiteDb.db"/>
-
-Schema of DB
+DB schema design:
 
 ```
- {
-    "email": "my Test@myemail.com",
-    "firstName": "Vasya 2",
-    "lastName": "Pupkin",
-    "bio": "My name is",
-    "phoneNumber": "+3752734596",
-    "region": "Minsk",
-    "industry": "TractorIT",
-    "educations": [
+  {
+    id: int                  <------------------------ default index
+  
+    Email: string,
+    FirstName: string,
+    LastName: string,
+    Bio: string,
+    PhoneNumber: string,
+    Region: string,          <------------------------ make additional index
+    Industry: string,        <------------------------ make additional index
+    Educations(Array):[
       {
-        "schoolName": "School",
-        "schoolStartYear": 1997,
-        "schoolEndYear": 2001
-      },
+        SchoolName: string,
+        SchoolStartYear: int,
+        SchoolEndYear: int
+      }
+	  ...
       {
-        "schoolName": "Univer",
-        "schoolStartYear": 2001,
-        "schoolEndYear": 2010
+        SchoolName: string,
+        SchoolStartYear: int,
+        SchoolEndYear: int
       }
     ],
-    "workExperiences": [
+    WorkExperiences(Array): [
       {
-        "jobTitle": "Dev",
-        "company": "Gik",
-        "jobStartYear": 2018,
-        "jobEndYear": 2019
+        JobTitle: string,
+        Company: string,
+        JobStartYear: int,
+        JobEndYear: int
+      }
+	  ...
+      {
+        JobTitle: string,
+        Company: string,
+        JobStartYear: int,
+        JobEndYear: int
       }
     ],
-    "facebook": "My facebook",
-    "twitter": "Twitter",
-    "blog": "blogpost.com",
-    "id": 4
-  },
+    Facebook: string,
+    Twitter: string,
+    Blog: string,
+  }
 ```  
+IMPORTANT: For 'Education' and 'WorkExperience' fields we are using collections to allow the users to store as many  educations and working experiences as they would like. So this kind of design is scaleable
 
-NOTE: Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
+IMPORTANT: Indexes are added to 'Industry' and 'Region' fields to have fast search by that conditions
 
 
 # Exceptions handling
