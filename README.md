@@ -31,8 +31,8 @@ Database is a locally embedded NoSQL database - LiteDB (https://www.litedb.org/)
     LastName: string,
     Bio: string,
     PhoneNumber: string,
-    Region: string,          <------------------------ make additional index
-    Industry: string,        <------------------------ make additional index
+    Region: string,          <------------------------ made additional index
+    Industry: string,        <------------------------ made additional index
     Educations(Array):[
       {
         SchoolName: string,
