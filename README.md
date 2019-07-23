@@ -10,9 +10,7 @@ Using .Net Framawork 4.7.1
 
 # Set up and run
 - Dowload project from repo.
-- Specify path to "MyLiteDb.db" in Web.config file.
-<add key="LiteDb.Path" value="D:\Projects\_git\my\other\code-challenge-webteamby\MyLiteDb.db"/>
-You could find this file in the root of project folder
+- Specify path to "MyLiteDb.db" in Web.config file. <add key="LiteDb.Path" value="D:\Projects\_git\my\other\code-challenge-webteamby\MyLiteDb.db"/>. You could find this file in the root of project folder.
 - Restore nugetpackages.
 - Build and run 'BsvService.Api'
 
