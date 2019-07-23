@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Selectors;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -154,6 +155,8 @@ namespace BsvService.UnitTest
                 }
             };
 
+        public List<UserProfile> Users => _users;
+
         void IRepoBase<UserProfile>.Delete(int id)
         {
             throw new NotImplementedException();
@@ -175,7 +178,11 @@ namespace BsvService.UnitTest
 
         void IRepoBase<UserProfile>.Insert(UserProfile userProfile)
         {
-            throw new NotImplementedException();
+            if (_users.Exists(x => x.Id == userProfile.Id))
+            {
+                throw new ArgumentException("DB already has element with such Id");
+            }
+            _users.Add(userProfile);
         }
 
         void IRepoBase<UserProfile>.Update(UserProfile userProfile)

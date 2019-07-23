@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -62,6 +63,14 @@ namespace BsvService.UnitTest
             Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
             Assert.IsTrue(contentResult.Content.Count() == 2);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "DB already has element with such Id")]
+        public void TestMethod4()
+        {
+            var user = (repo as TestUserRepo)?.Users.ElementAt(0);
+            IHttpActionResult actionResult = controller.CreateUser(user);
         }
     }
 }
