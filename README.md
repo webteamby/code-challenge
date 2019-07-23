@@ -76,7 +76,8 @@ Implemented via global request filter.
 
 # Documenting API
 
-API documentation could be got at address http://localhost:5000/swagger/ui/index
+API documentation could be found at address http://localhost:5000/swagger/ui/index
 
 # Unit Tests
- Included
+ 
+ Included. See project **'BsvService.UnitTest'**.
